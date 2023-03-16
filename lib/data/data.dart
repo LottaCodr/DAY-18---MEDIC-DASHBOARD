@@ -4,5 +4,5 @@ final prevention = [
   {'lib/assets/images/mask.jpg': 'Wear a\nmask'}
 ];
 
-final covidChinaDailyNewCases = [12,17,11,15,10,12,11,21,13,83,14,16,14,30];
+final casesDailyNewCases = [12,17,11,15,10,12,11,21,13,83,14,16,14,30];
 

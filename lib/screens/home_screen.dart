@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
         slivers: [
           _builderHeader(screenHeight),
           _buildPreventionTips(screenHeight),
+          _buildYourOwnTest(screenHeight),
         ],
       ),
     );
@@ -45,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'COVID-19',
+                  'MEDLAB-365',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
@@ -87,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: screenHeight * 0.01,
                 ),
                 const Text(
-                    'If you feel sick with COVID-23 symptoms, '
+                    'If you feel sick with COVID-19 symptoms, '
                     'please call or text us immediately',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -153,8 +154,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-
   }
+
   SliverToBoxAdapter _buildPreventionTips(double screenHeight) {
     return SliverToBoxAdapter(
       child: Container(
@@ -162,34 +163,85 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Prevention Tips',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w600
+            const Text(
+              'Prevention Tips',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
             ),
+            const SizedBox(
+              height: 20,
             ),
-            const SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: prevention.map((e) => Column(
-                children: [
-                  Image.asset(e.keys.first, height: screenHeight * 0.12,
-                  ),
-                  SizedBox(height: screenHeight * 0.015,),
-                  Text(e.values.first,
-                  style: const TextStyle(
+              children: prevention
+                  .map((e) => Expanded(
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              e.keys.first,
+                              height: screenHeight * 0.12,
+                            ),
+                            SizedBox(
+                              height: screenHeight * 0.015,
+                            ),
+                            Text(
+                              e.values.first,
+                              style: const TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                              textAlign: TextAlign.center,
+                            )
+                          ],
+                        ),
+                      ))
+                  .toList(),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  SliverToBoxAdapter _buildYourOwnTest(double screenHeight) {
+    return SliverToBoxAdapter(
+      child: Container(
+        margin: const EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 20,
+        ),
+        padding: const EdgeInsets.all(10),
+        height: screenHeight * 0.15,
+        decoration: BoxDecoration(
+          gradient:
+              LinearGradient(colors: [Color(0xFFAD9FE4), Palette.primaryColor]),
+        borderRadius: BorderRadius.circular(20)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Image.asset('lib/assets/images/test.jpg'),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children:  [
+                const Text('Do your own test',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
+                ),),
+                SizedBox(height: screenHeight * 0.01,),
+                const Text('Follow the instructions\nto do your own test',
+                  style: TextStyle(
+                    color: Colors.white,
                     fontSize: 16,
-                    fontWeight: FontWeight.w500
                   ),
-                  textAlign: TextAlign.center,)
-                ],
-              )
-              ).toList(),
+                  maxLines: 2,
+                )
+              ],
             )
           ],
         ),
       ),
     );
 
-      }
   }
+}

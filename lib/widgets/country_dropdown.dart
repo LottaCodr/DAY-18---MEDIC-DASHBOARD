@@ -31,7 +31,7 @@ class CountryDropDown extends StatelessWidget {
                     CircleAvatar(
                       radius: 12,
                       child: Image.asset(
-                          'lib/assets/images/${e.toLowerCase()} usa.png'),
+                          'lib/assets/images/${e.toLowerCase()}'),
                     ),
                     const SizedBox(
                       width: 8,
